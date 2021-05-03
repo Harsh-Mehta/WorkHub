@@ -1,0 +1,10 @@
+wheel
+Celery
+supervisor
+redis
+Flask
+Flask-WTF
+Flask-SQLAlchemy
+Flask-Login
+Flask-Session
+Flask-Migrate
