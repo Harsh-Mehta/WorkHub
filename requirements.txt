@@ -8,3 +8,6 @@ Flask-SQLAlchemy
 Flask-Login
 Flask-Session
 Flask-Migrate
+python-dotenv
+email-validator
+PyMySQL
