@@ -25,6 +25,5 @@ class Config:
 
     # Flask-SQLAlchemy
     SQLALCHEMY_DATABASE_URI = environ.get('DATABASE_URL')
-    print(SQLALCHEMY_DATABASE_URI)
     SQLALCHEMY_ECHO = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
