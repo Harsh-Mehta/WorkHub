@@ -1,11 +1,10 @@
 """Routes for user authentication."""
 
-from flask import Blueprint, render_template, redirect, url_for, flash
-from .forms import LoginForm
-from .models import User
+from flask import Blueprint, redirect, render_template, flash, request, session, url_for
+from flask_login import login_required, logout_user, current_user, login_user
+from .forms import LoginForm, SignupForm
+from .models import db, User
 from .extensions import login_manager
-from flask_login import current_user, login_user
-from flask.helpers import flash
 
 
 # Blueprint Configuration
@@ -37,10 +36,43 @@ def login():
     return render_template("auth/login.jinja2", title="Login", form=form)
 
 
-# @auth_bp.route('/signup', methods=['GET', 'POST'])
-# def signup():
-#     # Signup logic goes here
-#     pass
+@auth_bp.route('/register', methods=['GET', 'POST'])
+def register():
+    """
+    User sign-up page.
+
+    GET requests serve sign-up page.
+    POST requests validate form & user creation.
+    """
+    
+    form = SignupForm()
+    
+    if form.validate_on_submit() or request.method == 'POST':
+        existing_user = User.query.filter_by(email=form.email.data).first()
+        
+        if existing_user is None:
+            user = User(
+                fname=form.fname.data,
+                lname=form.lname.data,
+                email=form.email.data,
+                contact=form.contact.data
+            )
+            print(form.role.data)
+            user.set_password(form.password.data)
+            db.session.add(user)
+            db.session.commit()  # Create new user
+            login_user(user)  # Log in as newly created user
+            
+            return redirect(url_for('home'))
+        
+        flash('A user already exists with that email address.')
+    
+    return render_template(
+        'auth/register.jinja2',
+        title='Register Now',
+        form=form,
+    )
+
 
 @login_manager.user_loader
 def load_user(user_id):
