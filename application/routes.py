@@ -6,8 +6,9 @@ from flask_login import logout_user, login_required
 
 @app.route("/", methods=["GET", "POST"])
 @app.route("/home", methods=["GET", "POST"])
+@login_required
 def home():
-    return render_template("home.jinja2")
+    return render_template("pages/home.jinja2")
 
 
 @app.route("/logout")
