@@ -3,7 +3,7 @@
 from flask import Blueprint, redirect, render_template, flash, request, session, url_for
 from flask_login import login_required, logout_user, current_user, login_user
 from .forms import LoginForm, SignupForm
-from .models import db, User
+from .models import db, User, Role
 from .extensions import login_manager
 
 
@@ -23,7 +23,7 @@ def login():
     form = LoginForm()
     
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
+        user = User.query.filter_by(email=form.email.data).first()
         
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
@@ -31,7 +31,7 @@ def login():
         
         login_user(user, remember=form.remember_me.data)
         
-        return redirect(url_for('index'))
+        return redirect(url_for('home'))
     
     return render_template("auth/login.jinja2", title="Login", form=form)
 
@@ -46,6 +46,7 @@ def register():
     """
     
     form = SignupForm()
+    form.role.choices = [(role.id, role.name) for role in Role.query.all()]
     
     if form.validate_on_submit() or request.method == 'POST':
         existing_user = User.query.filter_by(email=form.email.data).first()
@@ -55,9 +56,9 @@ def register():
                 fname=form.fname.data,
                 lname=form.lname.data,
                 email=form.email.data,
-                contact=form.contact.data
+                contact=form.contact.data,
+                role_id=form.role.data
             )
-            print(form.role.data)
             user.set_password(form.password.data)
             db.session.add(user)
             db.session.commit()  # Create new user
