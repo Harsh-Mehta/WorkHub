@@ -43,7 +43,7 @@ class SignupForm(FlaskForm):
         ]
     )
     contact = StringField('Contact Number', validators=[DataRequired()])
-    role = RadioField('Role', validators=[DataRequired()], choices=["Job Seeker", "Recruiter", "Admin"])
+    role = RadioField('Role', validators=[DataRequired()], choices=[])
     submit = SubmitField('Register')
 
 
