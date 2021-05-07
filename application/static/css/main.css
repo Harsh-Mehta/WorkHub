@@ -1,0 +1,9 @@
+body,html {
+    height: 100%;
+}
+.myBtn{
+    background-color: #F07217;
+}
+.form-check-input:checked~.form-check-label.red::before {
+    background-color: red;
+  }
