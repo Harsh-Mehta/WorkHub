@@ -17,3 +17,9 @@ def logout():
     """User log-out logic."""
     logout_user()
     return redirect(url_for('auth_bp.login'))
+
+
+@app.route("/seekerProfile", methods=["GET", "POST"])
+@login_required
+def seekerProfile():
+   return render_template("pages/seekerProfile.jinja2")
