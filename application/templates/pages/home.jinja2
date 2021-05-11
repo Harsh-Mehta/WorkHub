@@ -1,6 +1,59 @@
 {% extends "layout.jinja2" %}
 
 {% block content %}
-    <p>This is the homepage.</p>
-    <a href="/logout">Logout</a>
+<nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background: #555555;">
+        <div class="container"><a class="navbar-brand" href="#"><img src="static/img/Work%20hub_dark_bg.png" style="width: 50px;"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-bell" style="transform: scale(2.26);color: rgb(255,255,255);"></i></a></li>
+                    <li class="nav-item dropdown" style="border-style: none;"><a class="nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="bi bi-person-circle" style="transform: scale(2.26);color: rgb(255,255,255);"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="#">Stats</a>
+                            <a class="dropdown-item" href="/logout">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row" style="margin-top: 48px;">
+            <div class="col">
+                <div class="card" style="margin-bottom: 17px;">
+                    <div class="card-body">
+                        <h4 class="card-title">Job Title</h4>
+                        <h6 class="text-text-muted card-subtitle mb-2"><strong>Locarion: </strong>Wembley</h6>
+                        <h1 style="height: 19px;font-size: 16px;"><strong>Pay: </strong>12 GBP/hr</h1>
+                        <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.&nbsp;&nbsp;<a href="#" style="color: #f07217;">More</a></p>
+                        <div class="col"><button class="btn btn-primary float-end" type="button" style="background: #f07217;border-radius: 20px;padding-right: 18px;padding-left: 18px;border-style: none;width: 112.1406px;">Apply&nbsp;</button></div>
+                    </div>
+                </div>
+                <div class="card" style="margin-bottom: 17px;">
+                    <div class="card-body">
+                        <h4 class="card-title">Job Title</h4>
+                        <h6 class="text-text-muted card-subtitle mb-2"><strong>Locarion: </strong>Wembley</h6>
+                        <h1 style="height: 19px;font-size: 16px;"><strong>Pay: </strong>12 GBP/hr</h1>
+                        <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.&nbsp;&nbsp;<a href="#" style="color: #f07217;">More</a></p>
+                        <div class="col"><button class="btn btn-primary float-end" type="button" style="background: #f07217;border-radius: 20px;padding-right: 18px;padding-left: 18px;border-style: none;width: 112.1406px;">Apply&nbsp;</button></div>
+                    </div>
+                </div>
+                <div class="card" style="margin-bottom: 17px;">
+                    <div class="card-body">
+                        <h4 class="card-title">Job Title</h4>
+                        <h6 class="text-text-muted card-subtitle mb-2"><strong>Locarion: </strong>Wembley</h6>
+                        <h1 style="height: 19px;font-size: 16px;"><strong>Pay: </strong>12 GBP/hr</h1>
+                        <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.&nbsp;&nbsp;<a href="#" style="color: #f07217;">More</a></p>
+                        <div class="col"><button class="btn btn-primary float-end" type="button" style="background: #f07217;border-radius: 20px;padding-right: 18px;padding-left: 18px;border-style: none;width: 112.1406px;">Apply&nbsp;</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+
 {% endblock content %}
