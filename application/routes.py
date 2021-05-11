@@ -23,3 +23,8 @@ def logout():
 @login_required
 def seekerProfile():
    return render_template("pages/seekerProfile.jinja2")
+
+@app.route("/seekerStats", methods=["GET", "POST"])
+@login_required
+def seekerStats():
+   return render_template("pages/seekerStats.jinja2")
