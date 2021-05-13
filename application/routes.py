@@ -33,3 +33,8 @@ def seekerStats():
 @login_required
 def jobDetail():
     return render_template("pages/jobDetail.jinja2")
+
+@app.route("/seekerNotification",methods=["GET", "POST"])
+@login_required
+def seekerNotification():
+    return render_template("pages/seekerNotification.jinja2")
