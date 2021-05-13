@@ -1,0 +1,39 @@
+                                                                                                                           {% extends "layout.jinja2" %}
+
+{% block content %}
+<nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background: #555555;">
+        <div class="container"><a class="navbar-brand" href="/home"><img src="static/img/Work%20hub_dark_bg.png" style="width: 50px;"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" href="/seekerNotification"><i class="bi bi-bell" style="transform: scale(2.26);color: rgb(255,255,255);"></i></a></li>
+                    <li class="nav-item dropdown" style="border-style: none;"><a class="nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="bi bi-person-circle" style="transform: scale(2.26);color: rgb(255,255,255);"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/seekerProfile">Profile</a>
+                            <a class="dropdown-item" href="/seekerStats">Stats</a>
+                            <a class="dropdown-item" href="/logout">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+ <div class="container" style="margin-top: 50px;">
+        <form class="bootstrap-form-with-validation">
+            <h2>Post a Job</h2>
+            <div class="form-group mb-3"><label class="form-label" for="text-input">Job Title</label><input class="form-control" type="text" id="text-input" name="text-input"></div>
+            <div class="form-group mb-3"><label class="form-label" for="text-input">Job Location</label><input class="form-control" type="text" id="text-input-1" name="text-input"></div>
+            <div class="form-group mb-3"><label class="form-label" for="text-input">Amount to be Paid</label><input class="form-control" type="text" id="text-input-2" name="text-input"></div>
+            <div class="form-group mb-3"><label class="form-label" for="textarea-input">Job Description</label><textarea class="form-control" id="textarea-input" name="textarea"></textarea></div>
+            <div class="form-group mb-3">
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="checkbox-input" id="formCheck-1"><label class="form-check-label" for="formCheck-17">Urgent Requirement</label></div>
+            </div>
+            <div class="form-group mb-3"><button class="btn btn-primary" type="submit" style="background: #f07217;border-radius: 20px;width: 100.5px;border-width: 0px;">Post</button></div>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
+
+
+
+{% endblock content %}

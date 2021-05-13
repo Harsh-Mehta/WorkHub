@@ -38,3 +38,10 @@ def jobDetail():
 @login_required
 def seekerNotification():
     return render_template("pages/seekerNotification.jinja2")
+
+@app.route("/postJob",methods=["GET", "POST"])
+@login_required
+def recruiterPostJob():
+    return render_template("pages/recruiter_post_job.jinja2")
+
+
