@@ -44,4 +44,7 @@ def seekerNotification():
 def recruiterPostJob():
     return render_template("pages/recruiter_post_job.jinja2")
 
-
+@app.route("/postedJobs",methods=["GET", "POST"])
+@login_required
+def recruiterPostedJobs():
+    return render_template("pages/recruiter_posted_jobs.jinja2")
