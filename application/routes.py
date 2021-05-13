@@ -48,3 +48,8 @@ def recruiterPostJob():
 @login_required
 def recruiterPostedJobs():
     return render_template("pages/recruiter_posted_jobs.jinja2")
+
+@app.route("/applicants",methods=["GET", "POST"])
+@login_required
+def recruiterViewApplicants():
+    return render_template("pages/recruiter_view_applicants.jinja2")
