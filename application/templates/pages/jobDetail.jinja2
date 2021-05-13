@@ -1,0 +1,40 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+
+<nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background: #555555;">
+        <div class="container"><a class="navbar-brand" href="/home"><img src="static/img/Work%20hub_dark_bg.png" style="width: 50px;"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-bell" style="transform: scale(2.26);color: rgb(255,255,255);"></i></a></li>
+                    <li class="nav-item dropdown" style="border-style: none;"><a class="nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="bi bi-person-circle" style="transform: scale(2.26);color: rgb(255,255,255);"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/seekerProfile">Profile</a>
+                            <a class="dropdown-item" href="/seekerStats">Stats</a>
+                            <a class="dropdown-item" href="/logout">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="margin-top: 50px;">
+        <div class="card" style="margin-bottom: 0px;border-radius: 10px;margin-top: 0px;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h4>Job Title</h4>
+                        <h6 class="text-text-muted mb-2"><strong>Locarion: </strong>Wembley</h6>
+                        <h1 style="height: 19px;font-size: 16px;"><strong>Pay: </strong>12 GBP/hr</h1>
+                        <p style="height: 235px;text-align: justify;"><strong>Job Description:&nbsp;</strong><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices neque ornare libero id ultrices feugiat vitae neque, nisl. Quam in risus, nibh nullam est aliquam. Viverra mattis ultrices ullamcorper amet ut eget posuere phasellus viverra. Aliquam pellentesque tempus dolor commodo sagittis sed. Integer est venenatis ac, egestas diam. Morbi consectetur urna, nulla diam. Sed sit eu interdum praesent ultrices augue. Purus tellus, risus adipiscing in. Sollicitudin ut est in egestas id in diam, nisi. Mauris, tortor, aenean sodales sodales eu gravida hendrerit interdum nec.<br><br>Neque augue cursus senectus rutrum orci tortor, risus. Lorem cursus cursus tortor ut quam non, convallis vestibulum. Risus suspendisse pellentesque ut id at sit. Aliquam amet, dictum dictum posuere cursus. Sit massa ac bibendum iaculis morbi purus. Bibendum tortor ultricies morbi semper. Leo quis eros dui faucibus quis posuere amet.<br><br></p>
+                        <p style="height: 20px;text-align: justify;margin-bottom: 0px;"><strong>Contract Duration: </strong>2 Days<br><br></p><button class="btn btn-primary float-end" type="button" style="background: #f07217;border-radius: 20px;padding-right: 18px;padding-left: 18px;border-style: none;width: 188.1406px;">Accept Invitation</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
+
+{% endblock content %}

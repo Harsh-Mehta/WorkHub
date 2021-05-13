@@ -1,4 +1,3 @@
-
 import pytest
 from application import init_app
 from application.extensions import db

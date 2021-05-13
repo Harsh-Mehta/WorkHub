@@ -28,3 +28,8 @@ def seekerProfile():
 @login_required
 def seekerStats():
    return render_template("pages/seekerStats.jinja2")
+
+@app.route("/jobDetail",methods=["GET", "POST"])
+@login_required
+def jobDetail():
+    return render_template("pages/jobDetail.jinja2")
