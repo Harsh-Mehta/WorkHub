@@ -18,7 +18,7 @@ auth_bp = Blueprint(
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('home'))
     
     form = LoginForm()
     
@@ -33,7 +33,7 @@ def login():
         
         return redirect(url_for('home'))
     
-    return render_template("auth/login.jinja2", title="Login", form=form)
+    return render_template("auth/login.jinja2", title="Sign In", form=form)
 
 
 @auth_bp.route('/register', methods=['GET', 'POST'])
@@ -46,7 +46,8 @@ def register():
     """
     
     form = SignupForm()
-    form.role.choices = [(role.id, role.name) for role in Role.query.all()]
+    roles = [(role.id, role.name) for role in Role.query.order_by('name')]
+    form.role.choices = [(0, "Select Role"), *roles]
     
     if form.validate_on_submit() or request.method == 'POST':
         existing_user = User.query.filter_by(email=form.email.data).first()
@@ -70,7 +71,7 @@ def register():
     
     return render_template(
         'auth/register.jinja2',
-        title='Register Now',
+        title='Register Now (NEW)',
         form=form,
     )
 
