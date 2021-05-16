@@ -32,4 +32,4 @@ def init_database():
 
     yield db  # this is where the testing happens!
 
-    db.drop_all()
+    #db.drop_all()
