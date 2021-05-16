@@ -71,7 +71,7 @@ def register():
     
     return render_template(
         'auth/register.jinja2',
-        title='Register Now (NEW)',
+        title='Register Now',
         form=form,
     )
 
