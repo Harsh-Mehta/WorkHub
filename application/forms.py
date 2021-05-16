@@ -1,11 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, RadioField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
 from wtforms.validators import (
     DataRequired,
     Email,
     EqualTo,
     Length,
-    Optional
+    Optional,
+    Required
 )
 
 
@@ -43,7 +44,7 @@ class SignupForm(FlaskForm):
         ]
     )
     contact = StringField('Contact Number', validators=[DataRequired()])
-    role = RadioField('Role', validators=[DataRequired()], choices=[])
+    role = SelectField('Role', validators=[DataRequired()], choices=[], coerce=str)
     submit = SubmitField('Register')
 
 
@@ -59,4 +60,4 @@ class LoginForm(FlaskForm):
     )
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Login')
+    submit = SubmitField('Sign In')
