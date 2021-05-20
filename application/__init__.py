@@ -13,7 +13,7 @@ celery = Celery(__name__, broker=FlaskConfig.CELERY_BROKER_URL)
 
 
 def create_roles(db):
-    from .models import Role
+    from application.models import Role
 
     roles = ["Admin", "Job Seeker", "Recruiter"]
     
