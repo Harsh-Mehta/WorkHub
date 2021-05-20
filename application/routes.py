@@ -1,6 +1,7 @@
 from flask import render_template, redirect, url_for
 from flask import current_app as app
 from flask_login import logout_user, login_required
+from application.tasks import send_email
 
 
 
@@ -9,6 +10,22 @@ from flask_login import logout_user, login_required
 @login_required
 def home():
     return render_template("pages/home.jinja2")
+
+
+@app.route("/sendemail", methods=["GET", "POST"])
+@login_required
+def email_page():
+    email_data = {
+        'subject': 'Hello from the other side!',
+        'from': "workhub-96b1de@inbox.mailtrap.io",
+        'to': "workhub-96b1de@inbox.mailtrap.io",
+        'body': 'Good job Harsh! Mail feature finally works.'
+    }
+
+    send_email.delay(email_data)
+    return "Message sent!"
+
+    # return redirect(url_for('index'))
 
 
 @app.route("/logout")
