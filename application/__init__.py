@@ -3,6 +3,17 @@
 from flask import Flask
 
 
+def create_roles(db):
+    from .models import Role
+
+    roles = ["Admin", "Job Seeker", "Recruiter"]
+    
+    for role in roles:
+        role_obj = Role(name=role)
+        db.session.add(role_obj)
+        db.session.commit()
+
+
 def init_app():
     """Construct the core app object."""
     app = Flask(__name__, template_folder="templates", static_folder="static")
@@ -27,5 +38,8 @@ def init_app():
 
         # Create Database Models
         db.create_all()
+        
+        # Initial seed for user roles
+        create_roles(db)
         
         return app
