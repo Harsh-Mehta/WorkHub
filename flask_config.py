@@ -1,13 +1,14 @@
 """Flask app configuration."""
 
-from pathlib import Path
+from constants import BASE_DIR
 from os import environ
 from dotenv import load_dotenv
+import redis
 
-BASE_DIR = Path(__file__).parent
-load_dotenv(BASE_DIR/ ".env")
+load_dotenv(BASE_DIR / ".env")
 
-class Config:
+
+class FlaskConfig:
     """Set Flask configuration from environment variables."""
 
     FLASK_ENV = environ.get('FLASK_ENV')
@@ -27,3 +28,19 @@ class Config:
     SQLALCHEMY_DATABASE_URI = environ.get('DATABASE_URL')
     SQLALCHEMY_ECHO = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    
+    # Flask-Session
+    SESSION_TYPE = environ.get('SESSION_TYPE')
+    SESSION_REDIS = redis.from_url(environ.get('SESSION_REDIS'))
+
+    # Celery
+    CELERY_BROKER_URL = environ.get('CELERY_BROKER_URL')
+    
+    # Flask-Mail
+    MAIL_SERVER = environ.get('MAIL_SERVER')
+    MAIL_PORT = environ.get('MAIL_PORT')
+    MAIL_USERNAME = environ.get('MAIL_USERNAME')
+    MAIL_PASSWORD = environ.get('MAIL_PASSWORD')
+    MAIL_USE_TLS = True
+    MAIL_USE_SSL = False
+    

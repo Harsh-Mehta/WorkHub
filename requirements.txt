@@ -8,6 +8,8 @@ Flask-SQLAlchemy
 Flask-Login
 Flask-Session
 Flask-Migrate
+Flask-Mail
 python-dotenv
 email-validator
 PyMySQL
+flower

@@ -1,0 +1,10 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+    <div class="container">
+        <p>Dear {{ receiver }},</p>
+        <p>{{ body }}</p>
+        <p>Regards,</p>
+        <p>{{ sender }}</p>
+    </div>
+{% endblock content %}
