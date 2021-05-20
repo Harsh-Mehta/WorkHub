@@ -3,7 +3,7 @@
 from flask import Blueprint, redirect, render_template, flash, request, session, url_for
 from flask_login import login_required, logout_user, current_user, login_user
 from .forms import LoginForm, SignupForm
-from .models import db, User, Role
+from .models import db, User, Role, Admin, JobSeeker, Recruiter
 from .extensions import login_manager
 
 
@@ -48,31 +48,48 @@ def register():
     form = SignupForm()
     roles = [(role.id, role.name) for role in Role.query.order_by('name')]
     form.role.choices = [(0, "Select Role"), *roles]
-    
+
     if form.validate_on_submit() or request.method == 'POST':
         existing_user = User.query.filter_by(email=form.email.data).first()
-        
+
         if existing_user is None:
-            user = User(
-                fname=form.fname.data,
-                lname=form.lname.data,
-                email=form.email.data,
-                contact=form.contact.data,
-                role_id=form.role.data
-            )
-            user.set_password(form.password.data)
-            db.session.add(user)
-            db.session.commit()  # Create new user
-            login_user(user)  # Log in as newly created user
-            
-            return redirect(url_for('home'))
-        
-        flash('A user already exists with that email address.')
-    
+            if form.role.data != 0:
+                user = User(
+                    fname=form.fname.data,
+                    lname=form.lname.data,
+                    email=form.email.data,
+                    contact=form.contact.data,
+                    role_id=form.role.data
+                )
+                user.set_password(form.password.data)
+                db.session.add(user)
+                db.session.commit()  # Create new user
+
+                # Adding user to appropriate role table
+                if form.role.data == 1:
+                    admin = Admin(user_id=user.id)
+                    db.session.add(admin)
+                    db.session.commit()
+                elif form.role.data == 2:
+                    job_seeker = JobSeeker(user_id=user.id)
+                    db.session.add(job_seeker)
+                    db.session.commit()
+                elif form.role.data == 3:
+                    recruiter = Recruiter(user_id=user.id)
+                    db.session.add(recruiter)
+                    db.session.commit()
+                
+                login_user(user)  # Log in as newly created user
+                return redirect(url_for('home'))
+
+            flash('A user already exists with that email address.')
+        else:
+            flash('Oops! It looks like you have selected a wrong role.')
+
     return render_template(
         'auth/register.jinja2',
         title='Register Now',
-        form=form,
+        form=form
     )
 
 
