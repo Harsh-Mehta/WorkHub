@@ -53,7 +53,7 @@ def register():
         existing_user = User.query.filter_by(email=form.email.data).first()
 
         if existing_user is None:
-            if form.role.data != 0:
+            if int(form.role.data) != 0:
                 user = User(
                     fname=form.fname.data,
                     lname=form.lname.data,
@@ -82,9 +82,9 @@ def register():
                 login_user(user)  # Log in as newly created user
                 return redirect(url_for('home'))
 
-            flash('A user already exists with that email address.')
-        else:
             flash('Oops! It looks like you have selected a wrong role.')
+        else:
+            flash('A user already exists with that email address.')
 
     return render_template(
         'auth/register.jinja2',

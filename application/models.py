@@ -66,15 +66,17 @@ class Recruiter(db.Model):
 
 
 class Admin(db.Model):
-    __tablename__ = "admin"
+    __tablename__ = "admins"
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    banned_user = db.relationship('BannedUser', backref=db.backref("admin", lazy=True))
 
 
-class BannedUsers(db.Model):
+class BannedUser(db.Model):
     __tablename__ = "banned_users"
     
-    admin_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    admin_id = db.Column(db.Integer, db.ForeignKey("admins.id"), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    reason = db.Column(db.String, unique=False, nullable=False)
+    reason = db.Column(db.String(30), unique=False, nullable=False)

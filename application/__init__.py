@@ -9,9 +9,11 @@ def create_roles(db):
     roles = ["Admin", "Job Seeker", "Recruiter"]
     
     for role in roles:
-        role_obj = Role(name=role)
-        db.session.add(role_obj)
-        db.session.commit()
+        existing_role = Role.query.filter_by(name=role).first()
+        if existing_role is None:
+            role_obj = Role(name=role)
+            db.session.add(role_obj)
+            db.session.commit()
 
 
 def init_app():
