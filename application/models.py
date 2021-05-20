@@ -25,6 +25,11 @@ class User(UserMixin, db.Model):
     
     role_id = db.Column(db.Integer, db.ForeignKey("roles.id"), nullable=False)
     
+    job_seekers = db.relationship('JobSeeker', backref=db.backref("user", lazy=True))
+    recruiters = db.relationship('Recruiter', backref=db.backref("user", lazy=True))
+    admins = db.relationship('Admin', backref=db.backref("user", lazy=True))
+    banned_users = db.relationship('BannedUser', backref=db.backref("user", lazy=True))
+    
 
     def set_password(self, password):
         """Create hashed password."""
@@ -41,3 +46,37 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User {} {}>'.format(self.fname, self.lname)
+
+
+class JobSeeker(db.Model):
+    __tablename__ = "job_seekers"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    cv_uploaded = db.Column(db.Boolean, nullable=False, unique=False, default=False)
+    ratings = db.Column(db.Float, nullable=False, unique=False, default=0)
+
+
+class Recruiter(db.Model):
+    __tablename__ = "recruiters"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    ratings = db.Column(db.Float, nullable=False, unique=False, default=0)
+
+
+class Admin(db.Model):
+    __tablename__ = "admins"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    banned_user = db.relationship('BannedUser', backref=db.backref("admin", lazy=True))
+
+
+class BannedUser(db.Model):
+    __tablename__ = "banned_users"
+    
+    id = db.Column(db.Integer, primary_key=True)
+    admin_id = db.Column(db.Integer, db.ForeignKey("admins.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    reason = db.Column(db.String(30), unique=False, nullable=False)
