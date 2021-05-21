@@ -19,9 +19,24 @@ def create_roles(db):
     
     for role in roles:
         existing_role = Role.query.filter_by(name=role).first()
+        
         if existing_role is None:
             role_obj = Role(name=role)
             db.session.add(role_obj)
+            db.session.commit()
+
+
+def create_job_statuses(db):
+    from application.models import JobStatus
+
+    statuses = ["Approved", "Completed", "In progress", "Rejected"]
+    
+    for status in statuses:
+        existing_status = JobStatus.query.filter_by(name=status).first()
+        
+        if existing_status is None:
+            status_obj = JobStatus(name=status)
+            db.session.add(status_obj)
             db.session.commit()
 
 
@@ -51,5 +66,6 @@ def init_app():
         
         # Initial seed for user roles
         create_roles(db)
+        create_job_statuses(db)
         
         return app
