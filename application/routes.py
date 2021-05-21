@@ -2,6 +2,7 @@ from flask import render_template, redirect, url_for
 from flask import current_app as app
 from flask_login import logout_user, login_required
 from application.tasks import send_email
+from application.models import Job
 
 
 
@@ -9,7 +10,8 @@ from application.tasks import send_email
 @app.route("/home", methods=["GET", "POST"])
 @login_required
 def home():
-    return render_template("pages/home.jinja2")
+    jobs = Job.query.all()
+    return render_template("pages/home.jinja2", jobs=jobs)
 
 
 @app.route("/sendemail", methods=["GET", "POST"])
