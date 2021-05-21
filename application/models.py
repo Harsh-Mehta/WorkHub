@@ -53,10 +53,10 @@ class JobSeeker(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    cv_uploaded = db.Column(db.Boolean, nullable=False, unique=False, default=False)
+    cv_uploaded = db.Column(db.Boolean, nullable=False, unique=False, default=0)
     ratings = db.Column(db.Float, nullable=False, unique=False, default=0)
     
-    posted_jobs = db.relationship("AppliedJob", backref=db.backref("job_seeker", lazy=True))
+    applied_jobs = db.relationship("AppliedJob", backref=db.backref("job_seekers", lazy=True))
 
 
 class Recruiter(db.Model):
@@ -104,8 +104,8 @@ class Job(db.Model):
     location = db.Column(db.String(255), nullable=False, unique=False)
     amount = db.Column(db.Integer, nullable=False, unique=False)
     duration = db.Column(db.String(10), nullable=False)
-    is_urgent = db.Column(db.Boolean, nullable=False, unique=False, default=False)
-    is_approved = db.Column(db.Boolean, nullable=False, unique=False, default=False)
+    is_urgent = db.Column(db.Boolean, nullable=False, unique=False, default=0)
+    is_approved = db.Column(db.Boolean, nullable=False, unique=False, default=0)
     
     posted_jobs = db.relationship("PostedJob", backref=db.backref("job", lazy=True))
     applied_jobs = db.relationship("AppliedJob", backref=db.backref("job", lazy=True))

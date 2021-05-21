@@ -53,28 +53,29 @@ def register():
         existing_user = User.query.filter_by(email=form.email.data).first()
 
         if existing_user is None:
-            if int(form.role.data) != 0:
+            role = int(form.role.data)
+            if role != 0:
                 user = User(
                     fname=form.fname.data,
                     lname=form.lname.data,
                     email=form.email.data,
                     contact=form.contact.data,
-                    role_id=form.role.data
+                    role_id=role
                 )
                 user.set_password(form.password.data)
                 db.session.add(user)
                 db.session.commit()  # Create new user
 
                 # Adding user to appropriate role table
-                if form.role.data == 1:
+                if role == 1:
                     admin = Admin(user_id=user.id)
                     db.session.add(admin)
                     db.session.commit()
-                elif form.role.data == 2:
+                elif role == 2:
                     job_seeker = JobSeeker(user_id=user.id)
                     db.session.add(job_seeker)
                     db.session.commit()
-                elif form.role.data == 3:
+                elif role == 3:
                     recruiter = Recruiter(user_id=user.id)
                     db.session.add(recruiter)
                     db.session.commit()

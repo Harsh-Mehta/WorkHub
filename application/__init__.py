@@ -29,7 +29,7 @@ def create_roles(db):
 def create_job_statuses(db):
     from application.models import JobStatus
 
-    statuses = ["Approved", "Completed", "In progress", "Rejected"]
+    statuses = list(sorted(["Approved", "Completed", "Waiting", "Rejected", "Hired", "Open"]))
     
     for status in statuses:
         existing_status = JobStatus.query.filter_by(name=status).first()
