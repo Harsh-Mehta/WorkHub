@@ -8,7 +8,7 @@ from application.tasks import send_email
 @app.route("/home", methods=["GET", "POST"])
 @login_required
 def home():
-    return render_template("pages/home.jinja2" , name="Joe Doe")
+    return render_template("pages/home.jinja2")
 
 
 @app.route("/sendemail", methods=["GET", "POST"])
