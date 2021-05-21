@@ -2,15 +2,13 @@ from flask import render_template, redirect, url_for
 from flask import current_app as app
 from flask_login import logout_user, login_required
 from application.tasks import send_email
-from application.models import User
-
 
 
 @app.route("/", methods=["GET", "POST"])
 @app.route("/home", methods=["GET", "POST"])
 @login_required
 def home():
-    return render_template("pages/[user_role]_home.jinja2" , name="Joe Doe")
+    return render_template("pages/home.jinja2" , name="Joe Doe")
 
 
 @app.route("/sendemail", methods=["GET", "POST"])
