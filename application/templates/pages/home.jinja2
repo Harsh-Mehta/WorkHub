@@ -1,7 +1,45 @@
 {% extends "layout.jinja2" %}
 
 {% block content %}
-    <p>This is the homepage.</p>
-    <a href="/sendemail"><button class="btn btn-primary">Send Mail</button></a>
-    <a href="/logout">Logout</a>
+    <div class="container-fluid p-0">
+        {% include "components/navbar.html" %}
+        <div class="container">
+            <div class="mb-5"></div>
+            {% for job in jobs %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <div class="row">
+                            <h3 class="h3">{{ job.title }}</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>Location: {{ job.location }}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p>Amount: £{{ job.amount }}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p>Duration: {{ job.duration }}</p>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ job.id }}" aria-expanded="false" aria-controls="collapse-{{ job.id }}">
+                                    View Description
+                                </button>
+                            </div>
+                            <div class="col-md-8 text-end">
+                                <a href="/apply_job/{{ job.id }}"><button class="btn btn-primary">Apply</button></a>
+                            </div>
+                            <div class="collapse mt-2" id="collapse-{{ job.id }}">
+                                <div class="card card-body">
+                                    {{ job.description }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock content %}

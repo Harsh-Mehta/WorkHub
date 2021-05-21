@@ -1,0 +1,37 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+    <div class="container-fluid p-0">
+        {% include "components/navbar.html" %}
+
+        <div class="container">
+            <form method="POST" action="/apply_job/{{ job_id }}">
+                <h3 class="h3 my-5">Job ID: {{ job_id }}</h3>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="fname" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="fname" aria-describedby="firstName" value="{{ current_user.fname }}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lname" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lname" aria-describedby="lastName" value="{{ current_user.lname }}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="contact" class="form-label">Contact</label>
+                        <input type="text" class="form-control" id="contact" aria-describedby="contactHelp" value="{{ current_user.contact }}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" value="{{ current_user.email }}">
+                    </div>
+                </div>
+                <p class="text-important fw-bold">NOTE: Please check your details before applying.</p>
+                <button type="submit" class="btn btn-primary">Apply</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

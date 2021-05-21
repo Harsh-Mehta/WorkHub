@@ -61,3 +61,26 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
+
+
+class JobApplicationForm(FlaskForm):
+    """Job Application Form"""
+    
+    fname = StringField(
+        'First Name',
+        validators=[DataRequired()]
+    )
+    lname = StringField(
+        'Last Name',
+        validators=[DataRequired()]
+    )
+    email = StringField(
+        'Email',
+        validators=[
+            Length(min=6),
+            Email(message='Enter a valid email.'),
+            DataRequired()
+        ]
+    )
+    contact = StringField('Contact Number', validators=[DataRequired()])
+    appply = SubmitField('Apply')
