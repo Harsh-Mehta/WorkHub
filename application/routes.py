@@ -60,3 +60,18 @@ def logout():
     """User log-out logic."""
     logout_user()
     return redirect(url_for('auth_bp.login'))
+
+@app.route("/search")
+@login_required
+def search():
+    return render_template("pages/search.jinja2")
+
+@app.route("/jobs")
+@login_required
+def jobs():
+    return render_template("pages/jobs.jinja2")
+
+@app.route("/messages")
+@login_required
+def messages():
+    return render_template("pages/messages.jinja2")    

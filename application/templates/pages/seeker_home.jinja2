@@ -1,0 +1,93 @@
+{% extends "layout.jinja2" %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/seeker_home.css') }}">
+    <style>
+        main {
+            grid-area: main;
+        }
+
+        .main-header {
+            display: flex;
+            grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+            justify-content: space-between;
+            margin: 20px 400px 20px 400px;
+            padding: 20px;
+            height: 300px; 
+            background-color:white;
+            border-radius: 15px;
+        }
+
+        .main-header__heading {
+            text-align: center;
+            color: rgb(244,203,116);
+            font-size: 26px;
+        }
+
+        .main-header__updates {
+            text-align: justify;
+            color: slategray;
+        }
+
+        .main-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(265px, 1fr)); 
+            grid-auto-rows: 500px;
+            grid-gap: 20px;
+            margin: 20px 400px 20px 400px;
+            color: slategray;
+        }
+  
+        .overviewcard {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+        }
+
+        .overviewcard__icon {
+            text-align: center;
+            color: rgb(244,203,116);
+        }
+
+        .overview_info {
+            text-align: justify;
+            color: slategray
+        }
+    </style>
+{% endblock css %}
+
+{% block content %} 
+    <header>
+        <div class="header">
+            <img src="{{ url_for('static', filename='img/logo4.png') }}" alt="WorkHub logo" />
+            <a href="/home" id="logo">WorkHub</a>
+            <form id="search" action="/search" method="post">
+                <input autocomplete="off" autofocus name="search" placeholder="Search" type="text">
+            </form>
+            <div class="header-right">
+                <a class="active" href="/home" id="Home">Home</a>
+                <a href="/jobs" id="Jobs">Jobs</a>
+                <a href="/messages" id="Messages">Messages</a>
+                <a href="/logout" id="Log out">Log out</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="main-header">
+            <div class="main-header__heading">Hello, {{name}}!</div>
+            <div class="main-header__updates">Recent Items</div>
+        </div>
+        <div class="main-overview">
+            <div class="overviewcard">
+              <div class="overviewcard__icon">Completed Jobs</div>
+              <div class="overviewcard__info">Nothing to show.</div>
+            </div>
+            <div class="overviewcard">
+              <div class="overviewcard__icon">Ongoing Applications</div>
+              <div class="overviewcard__info">Nothing to show.</div>
+            </div>
+          </div>
+    </main>
+{% endblock content %}

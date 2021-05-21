@@ -1,0 +1,20 @@
+{% block content %} 
+    <header>
+        <div class="header">
+            <img src="{{ url_for('static', filename='img/logo4.png') }}" alt="WorkHub logo" />
+            <a href="/home" id="logo">WorkHub</a>
+            <form id="search" action="/search" method="post">
+                <input autocomplete="off" autofocus name="search" placeholder="Search" type="text">
+            </form>
+            <div class="header-right">
+                <a href="/home" id="Home">Home</a>
+                <a href="/jobs" id="Jobs">Jobs</a>
+                <a class="active" href="/messages" id="Messages">Messages</a>
+                <a href="/logout" id="Log out">Log out</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h3>Messageses.</h3>
+    </main>
+{% endblock content %}
