@@ -61,17 +61,22 @@ def logout():
     logout_user()
     return redirect(url_for('auth_bp.login'))
 
-@app.route("/search")
+@app.route("/seeker_home", methods=["GET", "POST"])
+@login_required
+def seeker_home():
+    return render_template("pages/seeker_home.jinja2", name="John Doe")   
+
+@app.route("/search", methods=["GET", "POST"])
 @login_required
 def search():
     return render_template("pages/search.jinja2")
 
-@app.route("/jobs")
+@app.route("/jobs", methods=["GET", "POST"])
 @login_required
 def jobs():
     return render_template("pages/jobs.jinja2")
 
-@app.route("/messages")
+@app.route("/messages", methods=["GET", "POST"])
 @login_required
 def messages():
     return render_template("pages/messages.jinja2")    
